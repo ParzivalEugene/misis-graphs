@@ -1,21 +1,9 @@
 import heapq
 
 
-with open("INPUT.TXT") as file:
-    n, s, f = map(int, file.readline().split())
-    graph = []
-    for i in range(n):
-        graph.append(list(map(int, file.readline().split())))
-
-
-s -= 1
-f -= 1
-
-
 def dijkstra(graph, start, end):
     dist = [float("inf")] * len(graph)
     dist[start] = 0
-
     pq = [(0, start)]
 
     while pq:
@@ -37,12 +25,18 @@ def dijkstra(graph, start, end):
     return -1
 
 
-result = dijkstra(graph, s, f)
+with open("INPUT.TXT") as file:
+    n, s, f = map(int, file.readline().split())
+    graph = []
+    for i in range(n):
+        graph.append(list(map(int, file.readline().split())))
 
+s -= 1
+f -= 1
+result = dijkstra(graph, s, f)
 
 if result == float("inf"):
     result = -1
-
 
 with open("OUTPUT.TXT", "w") as file:
     file.write(str(result) + "\n")
